@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 
 const SUPPORT_EMAIL = "binduchowdary856@gmail.com";
-const CALENDAR_URL = "https://calendar.app.google/5MjYSDvdnqpyWUhy5";
+const CALENDAR_URL = "https://calendar.app.google/wJ4kBgkDnqsAEwzB7";
 
 interface FormData {
   name: string;
@@ -367,15 +367,15 @@ export default function SupportPage() {
               </ul>
 
               <div className="mt-5 bg-amber-50 border-2 border-amber-200 rounded-xl p-4 text-sm text-amber-900">
-                <strong>📧 Response Time:</strong> We typically respond within 24
-                hours at the email you provide. You can also reach us directly at{" "}
+                <strong>🟢 Available 24&times;7:</strong> Our team is here around
+                the clock &mdash; reach us anytime at{" "}
                 <a
                   href={`mailto:${SUPPORT_EMAIL}`}
                   className="font-bold text-[#B97E2C] underline hover:text-amber-900"
                 >
                   {SUPPORT_EMAIL}
                 </a>
-                .
+                {" "}and we'll reply day or night.
               </div>
 
               <div className="mt-3 bg-amber-50 border-2 border-amber-200 rounded-xl p-4 text-sm text-amber-900">
