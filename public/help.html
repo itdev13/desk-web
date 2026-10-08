@@ -61,6 +61,12 @@
     border:2px solid var(--line)!important; box-shadow:var(--shadow-sm);
     background:var(--amber)!important; color:var(--ink)!important;
   }
+  .back-link{
+    border:2px solid var(--line); box-shadow:var(--shadow-sm);
+    background:var(--card); font-weight:700!important;
+  }
+  .brand{cursor:pointer}
+  .brand:hover .mark{transform:translate(-1px,-1px)}
 
   /* ---- Hero ---- */
   .hero{padding:52px 0 30px}
@@ -210,7 +216,7 @@
     aside.toc .tocbox{display:flex; flex-wrap:wrap; gap:4px}
     aside.toc h4{width:100%}
     .grid2{grid-template-columns:1fr}
-    .top nav a:not(.pill-link){display:none}
+    .top nav a:not(.pill-link):not(.back-link){display:none}
   }
 </style>
 </head>
@@ -218,8 +224,9 @@
 
 <header class="top">
   <div class="wrap">
-    <div class="brand"><span class="mark">H</span> HelmDesk <span style="font-weight:600;color:var(--muted);font-size:14px">Help Center</span></div>
+    <a href="/" class="brand" style="text-decoration:none;color:inherit"><span class="mark">H</span> HelmDesk <span style="font-weight:600;color:var(--muted);font-size:14px">Help Center</span></a>
     <nav>
+      <a href="/" class="back-link">&larr; Back to site</a>
       <a href="#getting-started">Setup</a>
       <a href="#tickets">Tickets</a>
       <a href="#settings">Settings</a>
@@ -516,7 +523,7 @@
 
 <footer class="foot">
   <div class="wrap">
-    <span>HelmDesk Help Center</span>
+    <span><a href="/" style="color:var(--amber-deep);font-weight:700;text-decoration:none">&larr; Back to HelmDesk home</a></span>
     <span>Flat monthly pricing · No per-message fees</span>
   </div>
 </footer>
