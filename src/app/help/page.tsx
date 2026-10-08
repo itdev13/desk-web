@@ -1,227 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>HelmDesk Help Center</title>
-<meta name="description" content="HelmDesk help center — how to set up and run your white-label helpdesk: tickets, inbox, board, dashboard, team, settings, client portal and plans." />
-<style>
-  :root{
-    --cream:#FFF9EB; --cream-2:#FBF1D9; --ink:#0F1729; --ink-soft:#263047;
-    --amber:#E0A24A; --amber-deep:#B97E2C; --line:#0F1729;
-    --muted:#55607a; --card:#FFFFFF; --ok:#2E7D5B; --warn:#C2410C;
-    --shadow:4px 4px 0 0 var(--ink);
-    --shadow-sm:2px 2px 0 0 var(--ink);
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --cream:#14110A; --cream-2:#1C1810; --ink:#FDF6E3; --ink-soft:#E4DBC4;
-      --amber:#E0A24A; --amber-deep:#F0BE74; --line:#F0E6CC; --muted:#B6AE97;
-      --card:#1E1A12; --ok:#6FD3A3; --warn:#F0A872;
-      --shadow:4px 4px 0 0 var(--line); --shadow-sm:2px 2px 0 0 var(--line);
-    }
-  }
-  :root[data-theme="dark"]{
-    --cream:#14110A; --cream-2:#1C1810; --ink:#FDF6E3; --ink-soft:#E4DBC4;
-    --amber:#E0A24A; --amber-deep:#F0BE74; --line:#F0E6CC; --muted:#B6AE97;
-    --card:#1E1A12; --ok:#6FD3A3; --warn:#F0A872;
-    --shadow:4px 4px 0 0 var(--line); --shadow-sm:2px 2px 0 0 var(--line);
-  }
+"use client";
 
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0; background:var(--cream); color:var(--ink);
-    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:1180px; margin:0 auto; padding:0 16px}
-  a{color:var(--amber-deep); text-underline-offset:3px}
-  h1,h2,h3,h4{line-height:1.15; text-wrap:balance; margin:0}
+import { useEffect } from "react";
+import "./help.css";
 
-  /* ---- Top bar ---- */
-  header.top{
-    position:sticky; top:0; z-index:40; background:var(--cream);
-    border-bottom:2px solid var(--line);
-  }
-  .top .wrap{display:flex; align-items:center; gap:16px; height:64px}
-  .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:-.01em; font-size:20px}
-  .brand .mark{
-    width:34px; height:34px; border:2px solid var(--line); border-radius:9px;
-    background:var(--amber); display:grid; place-items:center; color:var(--ink);
-    font-weight:900; box-shadow:var(--shadow-sm); flex:none;
-  }
-  .top nav{margin-left:auto; display:flex; gap:4px; flex-wrap:wrap}
-  .top nav a{
-    color:var(--ink); text-decoration:none; font-weight:600; font-size:14px;
-    padding:8px 12px; border-radius:8px;
-  }
-  .top nav a:hover{background:var(--cream-2)}
-  .pill-link{
-    border:2px solid var(--line)!important; box-shadow:var(--shadow-sm);
-    background:var(--amber)!important; color:var(--ink)!important;
-  }
-  .back-link{
-    border:2px solid var(--line); box-shadow:var(--shadow-sm);
-    background:var(--card); font-weight:700!important;
-  }
-  .brand{cursor:pointer}
-  .brand:hover .mark{transform:translate(-1px,-1px)}
+/**
+ * HelmDesk Help Center — native Next.js route at /help.
+ * The document body is static, self-authored HTML (no user input), rendered via
+ * dangerouslySetInnerHTML so the warm-brutalist markup and entities stay 1:1 with
+ * the design. Styling is scoped under .helpdoc in ./help.css. A small scroll-spy
+ * highlights the current section in the sidebar.
+ */
 
-  /* ---- Hero ---- */
-  .hero{padding:52px 0 30px}
-  .eyebrow{
-    display:inline-block; font-size:12px; font-weight:800; letter-spacing:.14em;
-    text-transform:uppercase; color:var(--amber-deep);
-    border:2px solid var(--line); border-radius:999px; padding:5px 12px;
-    background:var(--card); box-shadow:var(--shadow-sm); margin-bottom:18px;
-  }
-  .hero h1{font-size:clamp(32px,5vw,50px); font-weight:900; letter-spacing:-.02em}
-  .hero p.lede{font-size:19px; color:var(--muted); max-width:62ch; margin:16px 0 0}
-
-  /* ---- Layout with sidebar ---- */
-  .doc{display:grid; grid-template-columns:240px 1fr; gap:40px; padding:10px 0 80px; align-items:start}
-  aside.toc{position:sticky; top:84px}
-  aside.toc .tocbox{
-    border:2px solid var(--line); border-radius:14px; background:var(--card);
-    box-shadow:var(--shadow); padding:16px;
-  }
-  aside.toc h4{font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-bottom:10px}
-  aside.toc a{display:block; color:var(--ink); text-decoration:none; font-size:14px; font-weight:600; padding:6px 8px; border-radius:8px}
-  aside.toc a:hover{background:var(--cream-2); color:var(--amber-deep)}
-
-  main{min-width:0}
-  section.block{
-    border:2px solid var(--line); border-radius:16px; background:var(--card);
-    box-shadow:var(--shadow); padding:28px 28px 24px; margin-bottom:26px; scroll-margin-top:84px;
-  }
-  section.block > h2{
-    font-size:26px; font-weight:900; letter-spacing:-.01em; display:flex; align-items:center; gap:12px;
-  }
-  section.block > h2 .num{
-    width:34px; height:34px; flex:none; border:2px solid var(--line); border-radius:9px;
-    background:var(--amber); color:var(--ink); display:grid; place-items:center;
-    font-size:15px; font-weight:900; box-shadow:var(--shadow-sm);
-  }
-  section.block > p{color:var(--ink-soft)}
-  section.block h3{font-size:18px; font-weight:800; margin:22px 0 6px}
-  section.block h3:first-of-type{margin-top:16px}
-  ul.clean{margin:10px 0; padding-left:0; list-style:none}
-  ul.clean li{position:relative; padding:4px 0 4px 26px; color:var(--ink-soft)}
-  ul.clean li::before{
-    content:""; position:absolute; left:4px; top:13px; width:9px; height:9px;
-    background:var(--amber); border:2px solid var(--line); border-radius:3px;
-  }
-  ol.steps{counter-reset:s; list-style:none; padding-left:0; margin:12px 0}
-  ol.steps li{position:relative; padding:4px 0 10px 40px; color:var(--ink-soft)}
-  ol.steps li::before{
-    counter-increment:s; content:counter(s);
-    position:absolute; left:0; top:2px; width:26px; height:26px;
-    border:2px solid var(--line); border-radius:7px; background:var(--cream-2);
-    display:grid; place-items:center; font-weight:800; font-size:13px; color:var(--ink);
-  }
-  code,.kbd{
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    background:var(--cream-2); border:1.5px solid var(--line); border-radius:6px;
-    padding:1px 6px; font-size:.88em;
-  }
-  strong{color:var(--ink)}
-
-  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px}
-  .mini{
-    border:2px solid var(--line); border-radius:12px; padding:14px 16px;
-    background:var(--cream-2); box-shadow:var(--shadow-sm);
-  }
-  .mini h4{font-size:15px; font-weight:800; margin-bottom:4px}
-  .mini p{margin:0; font-size:14.5px; color:var(--ink-soft)}
-
-  /* chips / tables */
-  .chips{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0}
-  .chip{
-    border:2px solid var(--line); border-radius:999px; padding:4px 12px;
-    font-size:13px; font-weight:700; background:var(--card); box-shadow:var(--shadow-sm);
-  }
-  .tbl-wrap{overflow-x:auto; margin:14px 0}
-  table{border-collapse:separate; border-spacing:0; width:100%; font-size:14.5px; min-width:420px}
-  table th,table td{text-align:left; padding:10px 12px; border-bottom:2px solid var(--line)}
-  table thead th{background:var(--cream-2); font-weight:800; border-top:2px solid var(--line)}
-  table{border:2px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:var(--shadow-sm)}
-  td .dot{display:inline-block; width:9px; height:9px; border-radius:50%; border:1.5px solid var(--line); margin-right:7px; vertical-align:middle}
-  .d-new{background:#9CA3AF}.d-open{background:var(--amber)}.d-pending{background:#C2410C}
-  .d-hold{background:#6B7280}.d-res{background:#2E7D5B}.d-closed{background:var(--ink)}
-  .d-urgent{background:#DC2626}.d-high{background:#EA580C}.d-normal{background:var(--amber)}.d-low{background:#9CA3AF}
-
-  .callout{
-    border:2px solid var(--line); border-left:7px solid var(--amber); border-radius:12px;
-    background:var(--cream-2); padding:14px 18px; margin:16px 0; box-shadow:var(--shadow-sm);
-  }
-  .callout.note{border-left-color:var(--amber-deep)}
-  .callout.tip{border-left-color:var(--ok)}
-  .callout p{margin:0; color:var(--ink-soft)}
-  .callout b{color:var(--ink)}
-
-  .faq details{
-    border:2px solid var(--line); border-radius:12px; background:var(--card);
-    box-shadow:var(--shadow-sm); margin-bottom:10px; overflow:hidden;
-  }
-  .faq summary{
-    cursor:pointer; padding:14px 18px; font-weight:800; list-style:none; display:flex; justify-content:space-between; align-items:center;
-  }
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+"; font-size:22px; color:var(--amber-deep); line-height:1}
-  .faq details[open] summary::after{content:"\2013"}
-  .faq details > div{padding:0 18px 16px; color:var(--ink-soft)}
-
-  /* Support CTA */
-  .support-cta{
-    border:2px solid var(--line); border-radius:16px; box-shadow:var(--shadow);
-    background:linear-gradient(0deg,var(--cream-2),var(--card)); padding:28px; text-align:center; margin-bottom:26px;
-  }
-  .support-cta h2{font-size:24px; font-weight:900; margin-bottom:6px}
-  .support-cta p{color:var(--ink-soft); margin:0 auto 16px; max-width:52ch}
-  .btn{
-    display:inline-block; border:2px solid var(--line); border-radius:10px; padding:11px 20px;
-    font-weight:800; text-decoration:none; box-shadow:var(--shadow-sm); background:var(--amber); color:var(--ink);
-  }
-  .btn.ghost{background:var(--card)}
-  .btn.book{background:var(--ink); color:var(--cream)}
-  :root[data-theme="dark"] .btn.book,
-  .btn:hover{transform:translate(-1px,-1px); box-shadow:3px 3px 0 0 var(--line)}
-  .btn.book:hover{box-shadow:3px 3px 0 0 var(--line)}
-  .cta-row{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
-  .avail{
-    display:inline-flex; align-items:center; gap:8px; margin-bottom:12px;
-    font-size:13px; font-weight:800; letter-spacing:.04em; text-transform:uppercase;
-    border:2px solid var(--line); border-radius:999px; padding:6px 14px;
-    background:var(--card); box-shadow:var(--shadow-sm); color:var(--ink);
-  }
-  .live-dot{
-    width:9px; height:9px; border-radius:50%; background:var(--ok); flex:none;
-    box-shadow:0 0 0 0 color-mix(in srgb, var(--ok) 60%, transparent);
-    animation:pulse 2s infinite;
-  }
-  @keyframes pulse{
-    0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--ok) 55%, transparent)}
-    70%{box-shadow:0 0 0 7px color-mix(in srgb, var(--ok) 0%, transparent)}
-    100%{box-shadow:0 0 0 0 color-mix(in srgb, var(--ok) 0%, transparent)}
-  }
-  @media (prefers-reduced-motion: reduce){ .live-dot{animation:none} }
-
-  footer.foot{border-top:2px solid var(--line); padding:26px 0; color:var(--muted); font-size:14px}
-  footer.foot .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
-
-  @media (max-width:860px){
-    .doc{grid-template-columns:1fr; gap:14px}
-    aside.toc{position:static}
-    aside.toc .tocbox{display:flex; flex-wrap:wrap; gap:4px}
-    aside.toc h4{width:100%}
-    .grid2{grid-template-columns:1fr}
-    .top nav a:not(.pill-link):not(.back-link){display:none}
-  }
-</style>
-</head>
-<body>
-
+const HELP_HTML = `
 <header class="top">
   <div class="wrap">
     <a href="/" class="brand" style="text-decoration:none;color:inherit"><span class="mark">H</span> HelmDesk <span style="font-weight:600;color:var(--muted);font-size:14px">Help Center</span></a>
@@ -254,7 +44,6 @@
 <div class="wrap">
   <div class="doc">
 
-    <!-- SIDEBAR -->
     <aside class="toc">
       <div class="tocbox">
         <h4>On this page</h4>
@@ -276,7 +65,6 @@
       </div>
     </aside>
 
-    <!-- MAIN -->
     <main>
 
       <section class="block" id="what-is">
@@ -527,24 +315,47 @@
     <span>Flat monthly pricing · No per-message fees</span>
   </div>
 </footer>
+`;
 
-<script>
-  // Highlight the current section in the sidebar as you scroll.
-  (function(){
-    var links = Array.prototype.slice.call(document.querySelectorAll('aside.toc a'));
-    var map = {};
-    links.forEach(function(a){ var id=a.getAttribute('href').slice(1); var el=document.getElementById(id); if(el) map[id]=a; });
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        var a = map[e.target.id]; if(!a) return;
-        if(e.isIntersecting){
-          links.forEach(function(l){ l.style.background=''; l.style.color=''; });
-          a.style.background='var(--cream-2)'; a.style.color='var(--amber-deep)';
-        }
-      });
-    },{rootMargin:'-20% 0px -70% 0px'});
-    Object.keys(map).forEach(function(id){ var el=document.getElementById(id); if(el) obs.observe(el); });
-  })();
-</script>
-</body>
-</html>
+export default function HelpPage() {
+  useEffect(() => {
+    // Highlight the current section in the sidebar as you scroll.
+    const links = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>(".helpdoc aside.toc a")
+    );
+    const map: Record<string, HTMLAnchorElement> = {};
+    links.forEach((a) => {
+      const id = a.getAttribute("href")?.slice(1);
+      if (id) {
+        const el = document.getElementById(id);
+        if (el) map[id] = a;
+      }
+    });
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          const a = map[e.target.id];
+          if (!a) return;
+          if (e.isIntersecting) {
+            links.forEach((l) => {
+              l.style.background = "";
+              l.style.color = "";
+            });
+            a.style.background = "var(--cream-2)";
+            a.style.color = "var(--amber-deep)";
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -70% 0px" }
+    );
+    Object.keys(map).forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div className="helpdoc" dangerouslySetInnerHTML={{ __html: HELP_HTML }} />
+  );
+}

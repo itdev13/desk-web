@@ -145,7 +145,7 @@ export default function SupportPage() {
 
         {/* Help Articles CTA */}
         <a
-          href="/help.html"
+          href="/help"
           className="group flex items-center justify-between gap-4 bg-white border-2 border-black rounded-2xl p-5 shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all mb-8"
         >
           <div className="flex items-center gap-4">

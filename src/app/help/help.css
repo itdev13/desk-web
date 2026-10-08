@@ -1,0 +1,197 @@
+/* HelmDesk Help Center — scoped styles for the /help route.
+   The site is light-mode only, so no dark-mode blocks here.
+   Everything is scoped under .helpdoc to avoid clashing with the site's global Tailwind. */
+
+.helpdoc{
+  --cream:#FFF9EB; --cream-2:#FBF1D9; --ink:#0F1729; --ink-soft:#263047;
+  --amber:#E0A24A; --amber-deep:#B97E2C; --line:#0F1729;
+  --muted:#55607a; --card:#FFFFFF; --ok:#2E7D5B; --warn:#C2410C;
+  --shadow:4px 4px 0 0 var(--ink);
+  --shadow-sm:2px 2px 0 0 var(--ink);
+  background:var(--cream); color:var(--ink);
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+.helpdoc *{box-sizing:border-box}
+.helpdoc a{color:var(--amber-deep); text-underline-offset:3px}
+.helpdoc h1,.helpdoc h2,.helpdoc h3,.helpdoc h4{line-height:1.15; text-wrap:balance; margin:0}
+.helpdoc .wrap{max-width:1180px; margin:0 auto; padding:0 16px}
+
+/* ---- Top bar ---- */
+.helpdoc .top{
+  position:sticky; top:0; z-index:40; background:var(--cream);
+  border-bottom:2px solid var(--line);
+}
+.helpdoc .top .wrap{display:flex; align-items:center; gap:16px; height:64px}
+.helpdoc .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:-.01em; font-size:20px; cursor:pointer}
+.helpdoc .brand .mark{
+  width:34px; height:34px; border:2px solid var(--line); border-radius:9px;
+  background:var(--amber); display:grid; place-items:center; color:var(--ink);
+  font-weight:900; box-shadow:var(--shadow-sm); flex:none;
+}
+.helpdoc .brand:hover .mark{transform:translate(-1px,-1px)}
+.helpdoc .top nav{margin-left:auto; display:flex; gap:4px; flex-wrap:wrap}
+.helpdoc .top nav a{
+  color:var(--ink); text-decoration:none; font-weight:600; font-size:14px;
+  padding:8px 12px; border-radius:8px;
+}
+.helpdoc .top nav a:hover{background:var(--cream-2)}
+.helpdoc .pill-link{
+  border:2px solid var(--line); box-shadow:var(--shadow-sm);
+  background:var(--amber); color:var(--ink);
+}
+.helpdoc .back-link{
+  border:2px solid var(--line); box-shadow:var(--shadow-sm);
+  background:var(--card); font-weight:700;
+}
+
+/* ---- Hero ---- */
+.helpdoc .hero{padding:52px 0 30px}
+.helpdoc .eyebrow{
+  display:inline-block; font-size:12px; font-weight:800; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--amber-deep);
+  border:2px solid var(--line); border-radius:999px; padding:5px 12px;
+  background:var(--card); box-shadow:var(--shadow-sm); margin-bottom:18px;
+}
+.helpdoc .hero h1{font-size:clamp(32px,5vw,50px); font-weight:900; letter-spacing:-.02em}
+.helpdoc .hero p.lede{font-size:19px; color:var(--muted); max-width:62ch; margin:16px 0 0}
+
+/* ---- Layout with sidebar ---- */
+.helpdoc .doc{display:grid; grid-template-columns:240px 1fr; gap:40px; padding:10px 0 80px; align-items:start}
+.helpdoc aside.toc{position:sticky; top:84px}
+.helpdoc aside.toc .tocbox{
+  border:2px solid var(--line); border-radius:14px; background:var(--card);
+  box-shadow:var(--shadow); padding:16px;
+}
+.helpdoc aside.toc h4{font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-bottom:10px}
+.helpdoc aside.toc a{display:block; color:var(--ink); text-decoration:none; font-size:14px; font-weight:600; padding:6px 8px; border-radius:8px}
+.helpdoc aside.toc a:hover{background:var(--cream-2); color:var(--amber-deep)}
+
+.helpdoc main{min-width:0}
+.helpdoc section.block{
+  border:2px solid var(--line); border-radius:16px; background:var(--card);
+  box-shadow:var(--shadow); padding:28px 28px 24px; margin-bottom:26px; scroll-margin-top:84px;
+}
+.helpdoc section.block > h2{
+  font-size:26px; font-weight:900; letter-spacing:-.01em; display:flex; align-items:center; gap:12px;
+}
+.helpdoc section.block > h2 .num{
+  width:34px; height:34px; flex:none; border:2px solid var(--line); border-radius:9px;
+  background:var(--amber); color:var(--ink); display:grid; place-items:center;
+  font-size:15px; font-weight:900; box-shadow:var(--shadow-sm);
+}
+.helpdoc section.block > p{color:var(--ink-soft)}
+.helpdoc section.block h3{font-size:18px; font-weight:800; margin:22px 0 6px}
+.helpdoc section.block h3:first-of-type{margin-top:16px}
+.helpdoc ul.clean{margin:10px 0; padding-left:0; list-style:none}
+.helpdoc ul.clean li{position:relative; padding:4px 0 4px 26px; color:var(--ink-soft)}
+.helpdoc ul.clean li::before{
+  content:""; position:absolute; left:4px; top:13px; width:9px; height:9px;
+  background:var(--amber); border:2px solid var(--line); border-radius:3px;
+}
+.helpdoc ol.steps{counter-reset:s; list-style:none; padding-left:0; margin:12px 0}
+.helpdoc ol.steps li{position:relative; padding:4px 0 10px 40px; color:var(--ink-soft)}
+.helpdoc ol.steps li::before{
+  counter-increment:s; content:counter(s);
+  position:absolute; left:0; top:2px; width:26px; height:26px;
+  border:2px solid var(--line); border-radius:7px; background:var(--cream-2);
+  display:grid; place-items:center; font-weight:800; font-size:13px; color:var(--ink);
+}
+.helpdoc code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  background:var(--cream-2); border:1.5px solid var(--line); border-radius:6px;
+  padding:1px 6px; font-size:.88em;
+}
+.helpdoc strong{color:var(--ink)}
+
+.helpdoc .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px}
+.helpdoc .mini{
+  border:2px solid var(--line); border-radius:12px; padding:14px 16px;
+  background:var(--cream-2); box-shadow:var(--shadow-sm);
+}
+.helpdoc .mini h4{font-size:15px; font-weight:800; margin-bottom:4px}
+.helpdoc .mini p{margin:0; font-size:14.5px; color:var(--ink-soft)}
+
+/* chips / tables */
+.helpdoc .chip{
+  border:2px solid var(--line); border-radius:999px; padding:4px 12px;
+  font-size:13px; font-weight:700; background:var(--card); box-shadow:var(--shadow-sm);
+}
+.helpdoc .tbl-wrap{overflow-x:auto; margin:14px 0}
+.helpdoc table{
+  border-collapse:separate; border-spacing:0; width:100%; font-size:14.5px; min-width:420px;
+  border:2px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:var(--shadow-sm);
+}
+.helpdoc table th,.helpdoc table td{text-align:left; padding:10px 12px; border-bottom:2px solid var(--line)}
+.helpdoc table thead th{background:var(--cream-2); font-weight:800; border-top:2px solid var(--line)}
+.helpdoc td .dot{display:inline-block; width:9px; height:9px; border-radius:50%; border:1.5px solid var(--line); margin-right:7px; vertical-align:middle}
+.helpdoc .d-new{background:#9CA3AF}.helpdoc .d-open{background:var(--amber)}.helpdoc .d-pending{background:#C2410C}
+.helpdoc .d-hold{background:#6B7280}.helpdoc .d-res{background:#2E7D5B}.helpdoc .d-closed{background:var(--ink)}
+.helpdoc .d-urgent{background:#DC2626}.helpdoc .d-high{background:#EA580C}.helpdoc .d-normal{background:var(--amber)}.helpdoc .d-low{background:#9CA3AF}
+
+.helpdoc .callout{
+  border:2px solid var(--line); border-left:7px solid var(--amber); border-radius:12px;
+  background:var(--cream-2); padding:14px 18px; margin:16px 0; box-shadow:var(--shadow-sm);
+}
+.helpdoc .callout.note{border-left-color:var(--amber-deep)}
+.helpdoc .callout.tip{border-left-color:var(--ok)}
+.helpdoc .callout p{margin:0; color:var(--ink-soft)}
+.helpdoc .callout b{color:var(--ink)}
+
+.helpdoc .faq details{
+  border:2px solid var(--line); border-radius:12px; background:var(--card);
+  box-shadow:var(--shadow-sm); margin-bottom:10px; overflow:hidden;
+}
+.helpdoc .faq summary{
+  cursor:pointer; padding:14px 18px; font-weight:800; list-style:none; display:flex; justify-content:space-between; align-items:center;
+}
+.helpdoc .faq summary::-webkit-details-marker{display:none}
+.helpdoc .faq summary::after{content:"+"; font-size:22px; color:var(--amber-deep); line-height:1}
+.helpdoc .faq details[open] summary::after{content:"\2013"}
+.helpdoc .faq details > div{padding:0 18px 16px; color:var(--ink-soft)}
+
+/* Support CTA */
+.helpdoc .support-cta{
+  border:2px solid var(--line); border-radius:16px; box-shadow:var(--shadow);
+  background:linear-gradient(0deg,var(--cream-2),var(--card)); padding:28px; text-align:center; margin-bottom:26px;
+}
+.helpdoc .support-cta h2{font-size:24px; font-weight:900; margin-bottom:6px}
+.helpdoc .support-cta p{color:var(--ink-soft); margin:0 auto 16px; max-width:52ch}
+.helpdoc .btn{
+  display:inline-block; border:2px solid var(--line); border-radius:10px; padding:11px 20px;
+  font-weight:800; text-decoration:none; box-shadow:var(--shadow-sm); background:var(--amber); color:var(--ink);
+}
+.helpdoc .btn.ghost{background:var(--card)}
+.helpdoc .btn.book{background:var(--ink); color:var(--cream)}
+.helpdoc .btn:hover{transform:translate(-1px,-1px); box-shadow:3px 3px 0 0 var(--line)}
+.helpdoc .cta-row{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
+
+.helpdoc .avail{
+  display:inline-flex; align-items:center; gap:8px; margin-bottom:12px;
+  font-size:13px; font-weight:800; letter-spacing:.04em; text-transform:uppercase;
+  border:2px solid var(--line); border-radius:999px; padding:6px 14px;
+  background:var(--card); box-shadow:var(--shadow-sm); color:var(--ink);
+}
+.helpdoc .live-dot{
+  width:9px; height:9px; border-radius:50%; background:var(--ok); flex:none;
+  animation:help-pulse 2s infinite;
+}
+@keyframes help-pulse{
+  0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--ok) 55%, transparent)}
+  70%{box-shadow:0 0 0 7px color-mix(in srgb, var(--ok) 0%, transparent)}
+  100%{box-shadow:0 0 0 0 color-mix(in srgb, var(--ok) 0%, transparent)}
+}
+@media (prefers-reduced-motion: reduce){ .helpdoc .live-dot{animation:none} }
+
+.helpdoc footer.foot{border-top:2px solid var(--line); padding:26px 0; color:var(--muted); font-size:14px}
+.helpdoc footer.foot .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+
+@media (max-width:860px){
+  .helpdoc .doc{grid-template-columns:1fr; gap:14px}
+  .helpdoc aside.toc{position:static}
+  .helpdoc aside.toc .tocbox{display:flex; flex-wrap:wrap; gap:4px}
+  .helpdoc aside.toc h4{width:100%}
+  .helpdoc .grid2{grid-template-columns:1fr}
+  .helpdoc .top nav a:not(.pill-link):not(.back-link){display:none}
+}
