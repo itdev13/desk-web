@@ -113,6 +113,9 @@ export default function Home() {
             <a href="#faq" className="font-medium text-gray-800 hover:text-black transition-colors">
               FAQ
             </a>
+            <a href="/help.html" className="font-medium text-gray-800 hover:text-black transition-colors">
+              Help
+            </a>
             <a href="/support" className="font-medium text-gray-800 hover:text-black transition-colors">
               Support
             </a>
@@ -690,6 +693,7 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4" style={{ color: "#ffffff" }}>Support</h4>
               <ul className="space-y-2" style={{ color: "#9ca3af" }}>
+                <li><a href="/help.html" className="hover:opacity-80 transition-opacity">Help Center</a></li>
                 <li><a href="#faq" className="hover:opacity-80 transition-opacity">FAQ</a></li>
                 <li><a href={CALENDAR_URL} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">Book a call</a></li>
                 <li><a href={`mailto:${SUPPORT_EMAIL}`} className="hover:opacity-80 transition-opacity">Contact</a></li>
