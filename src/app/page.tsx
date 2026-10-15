@@ -16,7 +16,7 @@ const COLORS = {
   pink: "#FF94E7",
 };
 
-const CALENDAR_URL = "https://calendar.app.google/wJ4kBgkDnqsAEwzB7";
+const CALENDAR_URL = "https://calendar.app.google/9PnxDV6QnokzQz2c6";
 const SUPPORT_EMAIL = "binduchowdary856@gmail.com";
 
 const CHANNELS = [

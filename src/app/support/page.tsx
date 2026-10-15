@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 
 const SUPPORT_EMAIL = "binduchowdary856@gmail.com";
-const CALENDAR_URL = "https://calendar.app.google/wJ4kBgkDnqsAEwzB7";
+const CALENDAR_URL = "https://calendar.app.google/9PnxDV6QnokzQz2c6";
 
 interface FormData {
   name: string;

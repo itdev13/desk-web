@@ -158,13 +158,13 @@
 }
 .helpdoc .support-cta h2{font-size:24px; font-weight:900; margin-bottom:6px}
 .helpdoc .support-cta p{color:var(--ink-soft); margin:0 auto 16px; max-width:52ch}
-.helpdoc .btn{
+.helpdoc a.btn{
   display:inline-block; border:2px solid var(--line); border-radius:10px; padding:11px 20px;
   font-weight:800; text-decoration:none; box-shadow:var(--shadow-sm); background:var(--amber); color:var(--ink);
 }
-.helpdoc .btn.ghost{background:var(--card)}
-.helpdoc .btn.book{background:var(--ink); color:var(--cream)}
-.helpdoc .btn:hover{transform:translate(-1px,-1px); box-shadow:3px 3px 0 0 var(--line)}
+.helpdoc a.btn.ghost{background:var(--card); color:var(--ink)}
+.helpdoc a.btn.book{background:var(--ink); color:#FFF9EB}
+.helpdoc a.btn:hover{transform:translate(-1px,-1px); box-shadow:3px 3px 0 0 var(--line)}
 .helpdoc .cta-row{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
 
 .helpdoc .avail{
