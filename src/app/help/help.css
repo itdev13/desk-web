@@ -163,7 +163,6 @@
   font-weight:800; text-decoration:none; box-shadow:var(--shadow-sm); background:var(--amber); color:var(--ink);
 }
 .helpdoc a.btn.ghost{background:var(--card); color:var(--ink)}
-.helpdoc a.btn.book{background:var(--ink); color:#FFF9EB}
 .helpdoc a.btn:hover{transform:translate(-1px,-1px); box-shadow:3px 3px 0 0 var(--line)}
 .helpdoc .cta-row{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
 
