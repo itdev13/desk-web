@@ -21,6 +21,7 @@ const HELP_HTML = `
       <a href="#tickets">Tickets</a>
       <a href="#settings">Settings</a>
       <a href="#portal">Portal</a>
+      <a href="#automations">Automations</a>
       <a href="#plans">Plans</a>
       <a href="#support">Support</a>
       <a href="https://marketplace.gohighlevel.com/integration/6a42b01a904c53a589aae692" target="_blank" rel="noopener" class="pill-link">Install HelmDesk</a>
@@ -58,8 +59,9 @@ const HELP_HTML = `
         <a href="#team">8 · Team &amp; seats</a>
         <a href="#settings">9 · Settings</a>
         <a href="#portal">10 · Client portal</a>
-        <a href="#plans">11 · Plans &amp; billing</a>
-        <a href="#data">12 · Data &amp; privacy</a>
+        <a href="#automations">11 · Workflow automation</a>
+        <a href="#plans">12 · Plans &amp; billing</a>
+        <a href="#data">13 · Data &amp; privacy</a>
         <a href="#faq">FAQ</a>
         <a href="#support">Get support</a>
       </div>
@@ -74,6 +76,7 @@ const HELP_HTML = `
           <div class="mini"><h4>Every message becomes a ticket</h4><p>Inbound messages across your support channels are captured automatically and turned into tickets.</p></div>
           <div class="mini"><h4>One place to work</h4><p>Reply, add internal notes, set priority, assign an owner, and resolve — all from a single workspace.</p></div>
           <div class="mini"><h4>Stay on top of SLAs</h4><p>Each ticket gets a response and resolution deadline. Overdue tickets are flagged automatically.</p></div>
+          <div class="mini"><h4>Automate your CRM</h4><p>Fire your CRM workflows off ticket events — acknowledge customers, escalate overdue tickets, request reviews on resolve.</p></div>
           <div class="mini"><h4>Fully your brand</h4><p>On the Agency plan, rename the app, set your color, and give clients a branded intake form.</p></div>
         </div>
       </section>
@@ -196,10 +199,11 @@ const HELP_HTML = `
         <p>Admins manage the team under the <strong>Team</strong> tab.</p>
         <ol class="steps">
           <li><strong>Sync your team</strong> — pull your current user roster into HelmDesk with one click.</li>
-          <li><strong>Mark who's active</strong> — toggle each person Active (assignable to tickets) or Excluded. People removed from your CRM show a "Deleted in CRM" badge.</li>
+          <li><strong>Control app access</strong> — each user has an <strong>App access</strong> toggle (on by default). Turn it off and that person sees a "no access" screen when they open HelmDesk. Admins always keep access.</li>
+          <li><strong>Mark who's assignable</strong> — toggle each person Assignable (receives tickets) or Excluded. People removed from your CRM show a "Deleted in CRM" badge.</li>
           <li><strong>Watch your seats</strong> — a bar shows "X of N seats in use." If you try to activate more agents than your plan allows, HelmDesk asks you to switch to a larger plan.</li>
         </ol>
-        <p>There are two roles: <strong>Admins</strong> (full access to Settings, Team, and all tickets) and <strong>Agents</strong> (work only their assigned tickets). Whoever installed HelmDesk is an admin.</p>
+        <p>There are two roles: <strong>Admins</strong> (full access to Settings, Team, and all tickets) and <strong>Agents</strong> (work only their assigned tickets). Whoever installed HelmDesk is an admin. <strong>App access</strong> and <strong>Assignable</strong> are independent — someone can have access to use the app without receiving ticket assignments, and vice versa.</p>
       </section>
 
       <section class="block" id="settings">
@@ -214,7 +218,7 @@ const HELP_HTML = `
         </ul>
         <h3>Assignment &amp; SLA</h3>
         <ul class="clean">
-          <li>Pick your assignment mode: round-robin, a specific agent, or unassigned.</li>
+          <li>Pick your assignment mode: round-robin, a specific agent, or unassigned. With round-robin, optionally <strong>balance evenly within each priority</strong> so every agent gets a fair share of urgents, highs, normals and lows — not just of the total.</li>
           <li>Set first-response and resolution targets per priority, with a plain-English live preview.</li>
           <li>Set how many days before resolved tickets auto-close, and whether customers can reopen a resolved ticket (Never / 3 / 7 / 14 / 30 days).</li>
           <li>Choose your ticket number prefix (e.g. <code>HD-1042</code>).</li>
@@ -232,32 +236,53 @@ const HELP_HTML = `
         <h3>Build your form</h3>
         <ol class="steps">
           <li>Go to <strong>Settings → Branding &amp; portal</strong> and turn the portal on.</li>
-          <li>Use the <strong>form builder</strong> to add, reorder, edit, or remove fields. Field types include text, long text, dropdown, radio buttons, and checkboxes.</li>
+          <li>Use the <strong>drag-and-drop form builder</strong> to add, reorder, edit, or remove fields, with a <strong>live preview</strong> of the customer-facing form as you go. Field types include text, long text, dropdown, radio buttons, and checkboxes — each with an optional placeholder and help text.</li>
           <li>Map each field to a core detail (name, email, phone, subject, message) or leave it as a custom question — custom answers show up in the ticket's "Form details" panel.</li>
           <li>Mark fields required as needed and save. Share your portal link with customers.</li>
         </ol>
-        <p>The form carries your brand name and color, with a "Powered by {your brand}" footer. HelmDesk protects it from spam automatically.</p>
+        <p><strong>No customer login required</strong> — anyone with the link can submit. Each submission creates a ticket and, if the person isn't in your CRM yet, creates the contact automatically (tagged so you know it came from the portal). The form carries your brand name and color, with a "Powered by {your brand}" footer, and HelmDesk protects it from spam automatically.</p>
+      </section>
+
+      <section class="block" id="automations">
+        <h2><span class="num">11</span> Workflow automation</h2>
+        <p>HelmDesk publishes <strong>workflow triggers</strong> so your CRM workflows can react to what happens in your helpdesk. Add a HelmDesk trigger as the starting step of a workflow, then run any actions you like — send an SMS or email, create a task, move a pipeline stage, notify your team.</p>
+        <h3>Available triggers</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Trigger</th><th>Fires when…</th><th>Great for</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Ticket Created</strong></td><td>a new ticket is opened</td><td>Auto-acknowledge the customer with their ticket number</td></tr>
+              <tr><td><strong>SLA Breached</strong></td><td>a ticket misses its first-response or resolution target</td><td>Escalate — alert a manager, create an urgent task</td></tr>
+              <tr><td><strong>Status Changed</strong></td><td>a ticket's status changes</td><td>Send a review request when resolved; notify on "Working"</td></tr>
+              <tr><td><strong>Ticket Assigned</strong></td><td>a ticket is assigned or reassigned</td><td>Notify the agent they have a new ticket</td></tr>
+              <tr><td><strong>Customer Replied</strong></td><td>the customer replies on a ticket</td><td>Flag it, or re-notify the owning agent</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Each trigger passes the ticket details into your workflow — reference them as <code>{{trigger.ticketRef}}</code>, <code>{{trigger.contactName}}</code>, <code>{{trigger.priority}}</code>, <code>{{trigger.status}}</code>, and more — so your messages and tasks can include the right context.</p>
+        <div class="callout tip"><p><b>Popular first automation:</b> add the <b>Ticket Created</b> trigger, then a "Send SMS" or "Send Email" action that tells the customer <em>"We've received your request, ticket {{trigger.ticketRef}} — we'll be in touch shortly."</em> Instant acknowledgment, zero manual work.</p></div>
       </section>
 
       <section class="block" id="plans">
-        <h2><span class="num">11</span> Plans &amp; billing</h2>
-        <p>HelmDesk is a flat monthly subscription — <strong>no per-message or per-ticket fees</strong>, ever. Pick the plan that fits your team's size and the features you need.</p>
+        <h2><span class="num">12</span> Plans &amp; billing</h2>
+        <p>HelmDesk is a flat monthly subscription — <strong>no per-message or per-ticket fees</strong>, ever. Every plan starts with a <strong>3-day free trial</strong>, so you can set it up and see it working before you're billed. Pick the plan that fits your team's size and the features you need.</p>
         <div class="tbl-wrap">
           <table>
             <thead><tr><th>Plan</th><th>Price</th><th>Seats</th><th>Highlights</th></tr></thead>
             <tbody>
-              <tr><td><strong>Starter</strong></td><td>$29/mo</td><td>3</td><td>Tickets, inbox, board, dashboard, SLA.</td></tr>
-              <tr><td><strong>Team</strong></td><td>$79/mo</td><td>10</td><td>Everything in Starter + round-robin auto-assignment.</td></tr>
+              <tr><td><strong>Starter</strong></td><td>$29/mo</td><td>3</td><td>Tickets, inbox, board, dashboard, SLA, workflow triggers.</td></tr>
+              <tr><td><strong>Team</strong></td><td>$79/mo</td><td>10</td><td>Everything in Starter + round-robin auto-assignment (incl. balance-per-priority).</td></tr>
               <tr><td><strong>Agency</strong></td><td>$99/mo</td><td>Unlimited</td><td>Everything + full white-label branding &amp; client portal.</td></tr>
             </tbody>
           </table>
         </div>
         <p>Open the <strong>Plan</strong> pill in the top-right to see your current plan and upgrade or switch at any time. Billing is handled on your own account — upgrades take effect right away.</p>
-        <div class="callout note"><p><b>Which features need which plan?</b> Round-robin auto-assignment requires <b>Team</b> or <b>Agency</b>. White-label branding and the client portal require <b>Agency</b>.</p></div>
+        <div class="callout tip"><p><b>Free trial:</b> every plan includes a <b>3-day free trial</b> with full access. When it ends you're billed automatically for the plan you chose — nothing to do to keep access. Cancel any time before it ends if it's not a fit.</p></div>
+        <div class="callout note"><p><b>Which features need which plan?</b> Round-robin auto-assignment requires <b>Team</b> or <b>Agency</b>. White-label branding and the client portal require <b>Agency</b>. Workflow triggers are available on every plan.</p></div>
       </section>
 
       <section class="block" id="data">
-        <h2><span class="num">12</span> Data &amp; privacy</h2>
+        <h2><span class="num">13</span> Data &amp; privacy</h2>
         <p>HelmDesk stores only what it needs to run your helpdesk — a reference to each customer's contact plus the ticket history. It doesn't copy or hold customer data beyond that.</p>
         <ul class="clean">
           <li><strong>If you uninstall</strong>, your tickets and settings are kept for a short grace window so a reinstall restores everything.</li>
@@ -270,6 +295,14 @@ const HELP_HTML = `
 
         <details><summary>Why isn't a message creating a ticket?</summary>
           <div>Check three things: (1) setup is complete — HelmDesk creates nothing until the wizard is finished; (2) the message arrived on a channel you enabled in Settings → Channels; and (3) it wasn't caught by a filter (automated reply, one-word message, or a "never-create" keyword). You can force specific messages into tickets with an "always-create" keyword.</div>
+        </details>
+
+        <details><summary>How do I automate things off ticket events?</summary>
+          <div>Build a workflow in your CRM and choose a HelmDesk trigger as its first step — Ticket Created, SLA Breached, Status Changed, Ticket Assigned, or Customer Replied. Then add any actions (send SMS/email, create a task, move a pipeline). Each trigger passes the ticket details (like {{trigger.ticketRef}} and {{trigger.contactName}}) so your messages include the right context. See the Workflow automation section above.</div>
+        </details>
+
+        <details><summary>Is there a free trial?</summary>
+          <div>Yes — every plan starts with a 3-day free trial with full access. When it ends you're billed automatically for the plan you chose; cancel any time before then if it's not a fit.</div>
         </details>
 
         <details><summary>A customer replied again — will it make a duplicate ticket?</summary>
