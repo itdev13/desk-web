@@ -58,9 +58,19 @@ const faqItems = [
       "Absolutely. On the Agency plan you apply your brand name, logo, and primary color across the entire app and the client-facing intake portal. Your clients only ever see your brand — resell HelmDesk as your own support product and keep all the revenue.",
   },
   {
+    question: "Is there a free trial?",
+    answer:
+      "Yes — every plan starts with a 3-day free trial so you can set it up and see it working before you're billed. You get full access during the trial, and billing starts automatically when it ends (cancel anytime before then).",
+  },
+  {
+    question: "Can HelmDesk trigger my CRM workflows?",
+    answer:
+      "Yes. HelmDesk publishes workflow triggers for key helpdesk events — Ticket Created, SLA Breached, Ticket Status Changed, Ticket Assigned, and Customer Replied. Build workflows that auto-acknowledge customers with their ticket number, escalate overdue tickets to a manager, request a review when a ticket is resolved, notify the assigned agent, and more.",
+  },
+  {
     question: "How does pricing work?",
     answer:
-      "Flat monthly billing based on the number of agents — no per-message or usage fees. Tickets and messages are unlimited on every plan. Starter is $29/mo, Team is $79/mo, and Agency is $99/mo.",
+      "Flat monthly billing based on the number of agents — no per-message or usage fees. Tickets and messages are unlimited on every plan. Starter is $29/mo, Team is $79/mo, and Agency is $99/mo — and every plan starts with a 3-day free trial.",
   },
   {
     question: "Can customers submit tickets through a portal?",
@@ -70,7 +80,7 @@ const faqItems = [
   {
     question: "How does routing and assignment work?",
     answer:
-      "Choose round-robin assignment to spread tickets evenly, single-owner routing to send everything to one agent, or leave tickets unassigned so your team can claim them from the queue. You control who is eligible to receive assignments.",
+      "Choose round-robin assignment to spread tickets evenly — across the whole queue, or balanced evenly within each priority level — single-owner routing to send everything to one agent, or leave tickets unassigned so your team can claim them from the queue. You control who is eligible to receive assignments, and you can reassign any ticket at any time.",
   },
   {
     question: "Is my data mine, and can I export it?",
@@ -136,7 +146,7 @@ export default function Home() {
             {/* Left content */}
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border-2 border-black shadow-[3px_3px_0_0_#000]">
-                <span className="font-bold text-[#B97E2C]">⚓ Flat monthly pricing</span>
+                <span className="font-bold text-[#B97E2C]">🎁 3-day free trial</span>
                 <span className="text-gray-400">·</span>
                 <span className="font-medium">No per-message fees</span>
               </div>
@@ -149,7 +159,7 @@ export default function Home() {
               </h1>
 
               <p className="text-xl text-gray-700 max-w-lg leading-relaxed">
-                A fully white-label helpdesk for your sub-accounts — turn every customer message into a tracked support ticket, branded as your own.
+                A fully white-label helpdesk for your sub-accounts — turn every customer message into a tracked support ticket, trigger your CRM workflows off ticket events, and resell it all branded as your own. Start with a 3-day free trial.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -162,7 +172,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-wrap gap-6 text-sm">
-                {["Native to your CRM", "No per-message fees", "White-label ready"].map((t) => (
+                {["3-day free trial", "Native to your CRM", "Workflow automation", "White-label ready"].map((t) => (
                   <span key={t} className="flex items-center gap-2">
                     <span className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center">
                       <svg className="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
@@ -299,6 +309,15 @@ export default function Home() {
               accentColor="#E0A24A"
             />
             <FeatureCard
+              icon="⚡"
+              title="Workflow Automation"
+              description="Fire your CRM workflows off helpdesk events — Ticket Created, SLA Breached, Status Changed, Ticket Assigned, and Customer Replied. Auto-acknowledge customers, escalate overdue tickets, request reviews on resolve, and more."
+              badge="⭐ NEW"
+              badgeColor="#FFE711"
+              iconBgColor="#FDE68A"
+              accentColor="#D97706"
+            />
+            <FeatureCard
               icon="📥"
               title="Automatic Ticket Creation"
               description='Create tickets from selected inbound channels. Smart filters ignore marketing/automation replies, skip one-word messages, and support "always create" / "never create" keyword rules. Auto-reply on new tickets.'
@@ -329,7 +348,7 @@ export default function Home() {
             <FeatureCard
               icon="🔀"
               title="Assignment & Routing"
-              description="Round-robin assignment, single-owner routing, or unassigned tickets your team can pick up manually from the queue."
+              description="Round-robin assignment (balance the total queue, or evenly within each priority), single-owner routing, or unassigned tickets your team can claim from the queue."
               iconBgColor="#FCE4EC"
               accentColor="#E91E63"
             />
@@ -343,14 +362,14 @@ export default function Home() {
             <FeatureCard
               icon="🌐"
               title="Branded Client Portal"
-              description="A fully white-label support portal with a drag-and-drop form builder — text, dropdowns, radio buttons, checkboxes, required fields, character limits. Submitted answers appear on the ticket."
+              description="A fully white-label support portal with a drag-and-drop form builder and live preview — text, dropdowns, radio buttons, checkboxes, placeholders, help text, required fields. No customer login needed; submissions become tickets and create the contact automatically."
               iconBgColor="#F4D9A8"
               accentColor="#B97E2C"
             />
             <FeatureCard
               icon="👥"
-              title="Team Management"
-              description="Sync your agents, choose who receives assignments, and work within plan-based agent limits so every ticket lands with the right person."
+              title="Team Management & Access"
+              description="Sync your agents, control who can open the app with per-user access, choose who receives assignments, and work within plan-based agent limits — admins manage, agents stay focused on their tickets."
               iconBgColor="#D7CCC8"
               accentColor="#6D4C41"
             />
@@ -530,8 +549,11 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             Simple, flat pricing
           </h2>
-          <p className="text-center text-lg mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-lg mb-4 max-w-2xl mx-auto">
             Priced by agents — never by messages. Unlimited tickets on every plan.
+          </p>
+          <p className="text-center text-base font-bold mb-12 max-w-2xl mx-auto">
+            🎁 Every plan starts with a 3-day free trial — cancel anytime before it ends.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
@@ -547,6 +569,7 @@ export default function Home() {
                 <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Unlimited tickets</li>
                 <li className="flex items-start gap-2"><span className="text-green-500">✓</span> SLA tracking</li>
                 <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Kanban board &amp; dashboard</li>
+                <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Workflow automation triggers</li>
               </ul>
               <InstallButton variant="outline" className="w-full">
                 Get Started
@@ -567,6 +590,7 @@ export default function Home() {
               <ul className="space-y-3 text-sm mb-6">
                 <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Everything in Starter</li>
                 <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Round-robin auto-assignment</li>
+                <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Balance evenly within each priority</li>
               </ul>
               <InstallButton variant="primary" className="w-full">
                 Get Started
