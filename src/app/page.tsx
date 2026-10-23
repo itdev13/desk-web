@@ -585,12 +585,30 @@ export default function Home() {
               </InstallButton>
             </Card>
 
-            {/* Team — popular */}
+            {/* Agency — popular (middle) */}
             <Card hover={false} className="shadow-[8px_8px_0_0_#000] border-[#E0A24A] relative md:-mt-4">
               <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#E0A24A] text-[#0F1729] text-xs font-bold px-4 py-1 rounded-full border-2 border-black whitespace-nowrap">
                 ⭐ MOST POPULAR
               </span>
-              <h3 className="font-bold text-2xl mb-1 mt-2">Team</h3>
+              <h3 className="font-bold text-2xl mb-1 mt-2">Agency</h3>
+              <div className="flex items-end gap-1 mb-1">
+                <span className="text-4xl font-bold">$99</span>
+                <span className="text-gray-500 mb-1">/mo</span>
+              </div>
+              <p className="text-sm font-semibold text-gray-500 mb-5">Unlimited agents</p>
+              <ul className="space-y-3 text-sm mb-6">
+                <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Everything in Team</li>
+                <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Full white-label branding</li>
+                <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Branded forms &amp; chat widget</li>
+              </ul>
+              <InstallButton variant="primary" className="w-full">
+                Get Started
+              </InstallButton>
+            </Card>
+
+            {/* Team */}
+            <Card hover={false} className="shadow-[6px_6px_0_0_#000]">
+              <h3 className="font-bold text-2xl mb-1">Team</h3>
               <div className="flex items-end gap-1 mb-1">
                 <span className="text-4xl font-bold">$79</span>
                 <span className="text-gray-500 mb-1">/mo</span>
@@ -600,24 +618,6 @@ export default function Home() {
                 <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Everything in Starter</li>
                 <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Round-robin auto-assignment</li>
                 <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Balance evenly within each priority</li>
-              </ul>
-              <InstallButton variant="primary" className="w-full">
-                Get Started
-              </InstallButton>
-            </Card>
-
-            {/* Agency */}
-            <Card hover={false} className="shadow-[6px_6px_0_0_#000]">
-              <h3 className="font-bold text-2xl mb-1">Agency</h3>
-              <div className="flex items-end gap-1 mb-1">
-                <span className="text-4xl font-bold">$99</span>
-                <span className="text-gray-500 mb-1">/mo</span>
-              </div>
-              <p className="text-sm font-semibold text-gray-500 mb-5">Unlimited agents</p>
-              <ul className="space-y-3 text-sm mb-6">
-                <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Everything in Team</li>
-                <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Full white-label branding</li>
-                <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Branded forms & chat widget</li>
               </ul>
               <InstallButton variant="outline" className="w-full">
                 Get Started
