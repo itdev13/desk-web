@@ -20,7 +20,7 @@ const HELP_HTML = `
       <a href="#getting-started">Setup</a>
       <a href="#tickets">Tickets</a>
       <a href="#settings">Settings</a>
-      <a href="#portal">Portal</a>
+      <a href="#portal">Support forms</a>
       <a href="#automations">Automations</a>
       <a href="#plans">Plans</a>
       <a href="#support">Support</a>
@@ -58,7 +58,7 @@ const HELP_HTML = `
         <a href="#sla">7 · Priorities &amp; SLA</a>
         <a href="#team">8 · Team &amp; seats</a>
         <a href="#settings">9 · Settings</a>
-        <a href="#portal">10 · Client portal</a>
+        <a href="#portal">10 · Support forms</a>
         <a href="#automations">11 · Workflow automation</a>
         <a href="#plans">12 · Plans &amp; billing</a>
         <a href="#data">13 · Data &amp; privacy</a>
@@ -77,7 +77,7 @@ const HELP_HTML = `
           <div class="mini"><h4>One place to work</h4><p>Reply, add internal notes, set priority, assign an owner, and resolve — all from a single workspace.</p></div>
           <div class="mini"><h4>Stay on top of SLAs</h4><p>Each ticket gets a response and resolution deadline. Overdue tickets are flagged automatically.</p></div>
           <div class="mini"><h4>Automate your CRM</h4><p>Fire your CRM workflows off ticket events — acknowledge customers, escalate overdue tickets, request reviews on resolve.</p></div>
-          <div class="mini"><h4>Fully your brand</h4><p>On the Agency plan, rename the app, set your color, and give clients a branded intake form.</p></div>
+          <div class="mini"><h4>Fully your brand</h4><p>On the Agency plan, rename the app, set your color, and give clients branded support forms.</p></div>
         </div>
       </section>
 
@@ -105,7 +105,7 @@ const HELP_HTML = `
               <tr><td><strong>Board</strong></td><td>A drag-and-drop Kanban board of tickets by status.</td><td>Everyone</td></tr>
               <tr><td><strong>Dashboard</strong></td><td>Reporting and analytics for the last 30 days.</td><td>Everyone*</td></tr>
               <tr><td><strong>Team</strong></td><td>Manage who can work tickets and how many seats are in use.</td><td>Admins</td></tr>
-              <tr><td><strong>Settings</strong></td><td>Channels, filters, assignment, SLA, branding and the portal.</td><td>Admins</td></tr>
+              <tr><td><strong>Settings</strong></td><td>Channels, filters, assignment, SLA, branding and support forms.</td><td>Admins</td></tr>
               <tr><td><strong>Support</strong></td><td>Reach the HelmDesk team or book a guided onboarding call.</td><td>Everyone</td></tr>
             </tbody>
           </table>
@@ -118,8 +118,8 @@ const HELP_HTML = `
         <p>A ticket is a single customer request you're tracking to resolution. Tickets get created three ways:</p>
         <h3>Automatically, from inbound messages</h3>
         <p>This is the main path. When a customer messages one of your configured channels, HelmDesk opens a ticket, links it to the customer's contact, and (if enabled) sends an auto-reply. If the same customer already has an open ticket, their new message is added to it instead of creating a duplicate.</p>
-        <h3>From your client portal</h3>
-        <p>If you've turned on the client portal (Agency plan), customers can submit requests through your branded intake form, and each submission becomes a ticket. See <a href="#portal">section 10</a>.</p>
+        <h3>From a support form</h3>
+        <p>If you've built a support form (Agency plan), customers can submit requests through your branded form — shared by link, embedded on a page, or opened from a floating widget — and each submission becomes a ticket. See <a href="#portal">section 10</a>.</p>
         <h3>Manually</h3>
         <p>Log a ticket yourself from the <strong>Queue</strong> or <strong>Board</strong> using <strong>New ticket</strong> — useful for phone calls or requests that came in off-channel. Enter the subject, contact, channel, priority, and details.</p>
         <div class="callout note"><p><b>Replies sent outside HelmDesk still count.</b> If a teammate answers a customer from your native inbox or an automation, HelmDesk captures that reply on the ticket and stops the response clock — so your SLA numbers stay accurate.</p></div>
@@ -146,10 +146,10 @@ const HELP_HTML = `
         <div class="grid2">
           <div class="mini"><h4>Left — ticket list</h4><p>Filter by status (All, Open, Waiting, Resolved, Closed) with live counts, and search by subject, contact, or ticket number.</p></div>
           <div class="mini"><h4>Center — the conversation</h4><p>The full thread plus a composer. Switch between a <b>Reply</b> (goes to the customer) and an <b>Internal note</b> (team-only).</p></div>
-          <div class="mini"><h4>Right — ticket details</h4><p>Contact card, priority, assignee, status, any portal form answers, and the SLA panel with a <b>Mark resolved</b> button.</p></div>
+          <div class="mini"><h4>Right — ticket details</h4><p>Contact card, priority, assignee, status, any support form answers, and the SLA panel with a <b>Mark resolved</b> button.</p></div>
           <div class="mini"><h4>Make it yours</h4><p>Resize or collapse any pane. The view auto-refreshes so new replies appear without reloading.</p></div>
         </div>
-        <div class="callout"><p><b>Heads up:</b> some ticket types (like phone calls or portal submissions with no reply channel) can't be replied to directly — the composer switches to Internal note only, so your team can still log what happened.</p></div>
+        <div class="callout"><p><b>Heads up:</b> some ticket types (like phone calls or support form submissions with no reply channel) can't be replied to directly — the composer switches to Internal note only, so your team can still log what happened.</p></div>
       </section>
 
       <section class="block" id="queue-board">
@@ -223,24 +223,31 @@ const HELP_HTML = `
           <li>Set how many days before resolved tickets auto-close, and whether customers can reopen a resolved ticket (Never / 3 / 7 / 14 / 30 days).</li>
           <li>Choose your ticket number prefix (e.g. <code>HD-1042</code>).</li>
         </ul>
-        <h3>Branding &amp; portal <span style="font-size:13px;font-weight:700;color:var(--amber-deep)">(Agency plan)</span></h3>
+        <h3>Branding &amp; forms <span style="font-size:13px;font-weight:700;color:var(--amber-deep)">(Agency plan)</span></h3>
         <ul class="clean">
           <li>Set your <strong>brand name</strong> and <strong>primary color</strong> — they replace HelmDesk's name and accent throughout.</li>
-          <li>Turn on the <strong>client portal</strong> and build your public intake form.</li>
+          <li>Build one or more <strong>support forms</strong> and share, embed, or add them as a widget on your site.</li>
         </ul>
       </section>
 
       <section class="block" id="portal">
-        <h2><span class="num">10</span> Your client portal <span style="font-size:13px;font-weight:700;color:var(--amber-deep)">(Agency plan)</span></h2>
-        <p>The client portal is a branded, public web form your customers can use to submit requests — every submission becomes a ticket, automatically linked to the right contact.</p>
+        <h2><span class="num">10</span> Support forms <span style="font-size:13px;font-weight:700;color:var(--amber-deep)">(Agency plan)</span></h2>
+        <p>A support form is a branded form your customers use to submit requests — every submission becomes a ticket, automatically linked to the right contact. Build one form or several, each with its own fields and brand, from <strong>Settings → Branding &amp; forms</strong>.</p>
         <h3>Build your form</h3>
         <ol class="steps">
-          <li>Go to <strong>Settings → Branding &amp; portal</strong> and turn the portal on.</li>
-          <li>Use the <strong>drag-and-drop form builder</strong> to add, reorder, edit, or remove fields, with a <strong>live preview</strong> of the customer-facing form as you go. Field types include text, long text, dropdown, radio buttons, and checkboxes — each with an optional placeholder and help text.</li>
+          <li>Go to <strong>Settings → Branding &amp; forms</strong> and create a form.</li>
+          <li>Use the <strong>drag-and-drop field builder</strong> to add, reorder, edit, or remove fields, with a <strong>live preview</strong> as you go. Field types include text, long text, dropdown, radio buttons, checkboxes, and help text — each with optional placeholder, help text, required toggle, and character limits.</li>
           <li>Map each field to a core detail (name, email, phone, subject, message) or leave it as a custom question — custom answers show up in the ticket's "Form details" panel.</li>
-          <li>Mark fields required as needed and save. Share your portal link with customers.</li>
+          <li>Save. Every form has its own <strong>shareable link</strong> you can send to customers.</li>
         </ol>
-        <p><strong>No customer login required</strong> — anyone with the link can submit. Each submission creates a ticket and, if the person isn't in your CRM yet, creates the contact automatically (tagged so you know it came from the portal). The form carries your brand name and color, with a "Powered by {your brand}" footer, and HelmDesk protects it from spam automatically.</p>
+        <h3>Three ways to use each form</h3>
+        <ul class="clean">
+          <li><strong>Share a link</strong> — send the form's public link in an email, text, or anywhere else; anyone with it can submit.</li>
+          <li><strong>Embed inline</strong> — open the <strong>Embed</strong> button, copy the inline iframe snippet, and paste it into a page section to drop the form right into your site.</li>
+          <li><strong>Floating widget</strong> — copy the widget snippet instead to add a floating <strong>Support</strong> launcher in the corner of any page; customers click it and the form opens in a popup.</li>
+        </ul>
+        <p>The <strong>Embed</strong> button shows a live preview of the widget alongside both snippets, ready to copy and paste on your site.</p>
+        <p><strong>No customer login required</strong> — anyone can submit however they reach the form. Each submission creates a ticket and, if the person isn't in your CRM yet, creates the contact automatically (and updates it if they are). Forms are fully white-label, carrying your brand name, logo, and color, and HelmDesk protects them from spam automatically.</p>
       </section>
 
       <section class="block" id="automations">
@@ -272,13 +279,13 @@ const HELP_HTML = `
             <tbody>
               <tr><td><strong>Starter</strong></td><td>$29/mo</td><td>3</td><td>Tickets, inbox, board, dashboard, SLA, workflow triggers.</td></tr>
               <tr><td><strong>Team</strong></td><td>$79/mo</td><td>10</td><td>Everything in Starter + round-robin auto-assignment (incl. balance-per-priority).</td></tr>
-              <tr><td><strong>Agency</strong></td><td>$99/mo</td><td>Unlimited</td><td>Everything + full white-label branding &amp; client portal.</td></tr>
+              <tr><td><strong>Agency</strong></td><td>$99/mo</td><td>Unlimited</td><td>Everything + full white-label branding &amp; support forms.</td></tr>
             </tbody>
           </table>
         </div>
         <p>Open the <strong>Plan</strong> pill in the top-right to see your current plan and upgrade or switch at any time. Billing is handled on your own account — upgrades take effect right away.</p>
         <div class="callout tip"><p><b>Free trial:</b> every plan includes a <b>3-day free trial</b> with full access. When it ends you're billed automatically for the plan you chose — nothing to do to keep access. Cancel any time before it ends if it's not a fit.</p></div>
-        <div class="callout note"><p><b>Which features need which plan?</b> Round-robin auto-assignment requires <b>Team</b> or <b>Agency</b>. White-label branding and the client portal require <b>Agency</b>. Workflow triggers are available on every plan.</p></div>
+        <div class="callout note"><p><b>Which features need which plan?</b> Round-robin auto-assignment requires <b>Team</b> or <b>Agency</b>. White-label branding and support forms require <b>Agency</b>. Workflow triggers are available on every plan.</p></div>
       </section>
 
       <section class="block" id="data">
@@ -318,7 +325,7 @@ const HELP_HTML = `
         </details>
 
         <details><summary>Can I rebrand HelmDesk as my own?</summary>
-          <div>Yes, on the Agency plan. Set your brand name and primary color under Settings → Branding &amp; portal, and they replace HelmDesk's name and accent across the app and your client portal.</div>
+          <div>Yes, on the Agency plan. Set your brand name and primary color under Settings → Branding &amp; forms, and they replace HelmDesk's name and accent across the app and your support forms.</div>
         </details>
 
         <details><summary>Does auto-reply fire for every ticket?</summary>

@@ -363,7 +363,7 @@ export default function SupportPage() {
                   "Installing HelmDesk and connecting channels in your sub-accounts",
                   "Configuring automatic ticket creation, filters, and auto-replies",
                   "Setting up SLAs, routing, assignment, and the Kanban board",
-                  "White-label branding and the client portal form builder",
+                  "White-label branding, support forms, and the embeddable chat widget",
                   "Bug reports with screenshots or feature requests",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">

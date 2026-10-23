@@ -50,12 +50,12 @@ const faqItems = [
   {
     question: "What are SLAs and how do they work?",
     answer:
-      "SLAs are first-response and resolution targets you set by priority. Each ticket shows a live countdown that moves from green to amber to red, so at-risk and overdue tickets are obvious at a glance across the whole queue.",
+      "SLAs are first-response and resolution targets you set by priority. Each ticket shows a live countdown that moves from green to amber to red, so at-risk and overdue tickets are obvious at a glance across the whole queue. SLA tracking is optional — turn it on or off anytime.",
   },
   {
     question: "Can I white-label HelmDesk?",
     answer:
-      "Absolutely. On the Agency plan you apply your brand name, logo, and primary color across the entire app and the client-facing intake portal. Your clients only ever see your brand — resell HelmDesk as your own support product and keep all the revenue.",
+      "Absolutely. On the Agency plan you apply your brand name, logo, and primary color across the entire app and every client-facing support form and widget. Your clients only ever see your brand — resell HelmDesk as your own support product and keep all the revenue.",
   },
   {
     question: "Is there a free trial?",
@@ -73,9 +73,9 @@ const faqItems = [
       "Flat monthly billing based on the number of agents — no per-message or usage fees. Tickets and messages are unlimited on every plan. Starter is $29/mo, Team is $79/mo, and Agency is $99/mo — and every plan starts with a 3-day free trial.",
   },
   {
-    question: "Can customers submit tickets through a portal?",
+    question: "Can customers submit tickets from my website?",
     answer:
-      "Yes. HelmDesk includes a fully white-label client portal with a drag-and-drop form builder — text fields, dropdowns, radio buttons, checkboxes, required fields, and character limits. Submitted answers appear directly on the ticket.",
+      "Yes. HelmDesk gives you fully white-label support forms built with a drag-and-drop form builder — text fields, dropdowns, radio buttons, checkboxes, help text, required fields, and character limits. Share each form as a link, embed it inline in a page, or add a floating chat-style widget to the corner of any website. Submissions become tickets and create the contact automatically — no customer login needed. Your workflows can even filter by which form was submitted.",
   },
   {
     question: "How does routing and assignment work?",
@@ -172,7 +172,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-wrap gap-6 text-sm">
-                {["3-day free trial", "Native to your CRM", "Workflow automation", "White-label ready"].map((t) => (
+                {["3-day free trial", "Native to your CRM", "Embeddable support widget", "White-label ready"].map((t) => (
                   <span key={t} className="flex items-center gap-2">
                     <span className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center">
                       <svg className="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
@@ -217,7 +217,7 @@ export default function Home() {
                 Make It Your Own
               </h2>
               <p className="text-lg leading-relaxed text-gray-300">
-                HelmDesk is 100% white-label. Put your brand name, your logo, and your colors across the entire app and the client-facing intake portal. Your clients never see &ldquo;HelmDesk.&rdquo;
+                HelmDesk is 100% white-label. Put your brand name, your logo, and your colors across the entire app and every client-facing support form and widget. Your clients never see &ldquo;HelmDesk.&rdquo;
               </p>
               <p className="text-lg leading-relaxed text-gray-300">
                 Resell it as your own branded support product and keep all the revenue.
@@ -302,7 +302,7 @@ export default function Home() {
             <FeatureCard
               icon="🎨"
               title="White-Label Branding"
-              description="Apply your brand name, logo, and primary color across the app and client portal. Resell HelmDesk as your own product — clients see only your brand."
+              description="Apply your brand name, logo, and primary color across the app and every client-facing form and widget. Resell HelmDesk as your own product — clients see only your brand."
               badge="⭐ FLAGSHIP"
               badgeColor="#FFE711"
               iconBgColor="#F4D9A8"
@@ -320,7 +320,7 @@ export default function Home() {
             <FeatureCard
               icon="📥"
               title="Automatic Ticket Creation"
-              description='Create tickets from selected inbound channels. Smart filters ignore marketing/automation replies, skip one-word messages, and support "always create" / "never create" keyword rules. Auto-reply on new tickets.'
+              description={'Turn inbound messages into tickets with a single on/off switch. Pick which channels count, ignore marketing/automation replies, skip one-word acks, and set "only create" / "never create" keyword rules. Quoted email replies are ignored so old keywords don’t trigger false tickets.'}
               iconBgColor="#BBDEFB"
               accentColor="#2196F3"
             />
@@ -339,9 +339,16 @@ export default function Home() {
               accentColor="#9C27B0"
             />
             <FeatureCard
+              icon="🗂️"
+              title="Bulk Actions & Archive"
+              description="Select multiple tickets to archive or delete in one move. Archived tickets live in their own tab, out of your active views, and can be restored to any status whenever you need them."
+              iconBgColor="#D7CCC8"
+              accentColor="#6D4C41"
+            />
+            <FeatureCard
               icon="⏱️"
               title="SLA Tracking & Overdue Flags"
-              description="First-response and resolution targets by priority. Live green → amber → red countdowns make at-risk tickets obvious before they breach."
+              description="Optional, per-priority first-response and resolution targets. Live green → amber → red countdowns flag at-risk tickets before they breach. Turn SLA tracking on or off anytime."
               iconBgColor="#FDE68A"
               accentColor="#D97706"
             />
@@ -361,8 +368,10 @@ export default function Home() {
             />
             <FeatureCard
               icon="🌐"
-              title="Branded Client Portal"
-              description="A fully white-label support portal with a drag-and-drop form builder and live preview — text, dropdowns, radio buttons, checkboxes, placeholders, help text, required fields. No customer login needed; submissions become tickets and create the contact automatically."
+              title="Support Forms & Chat Widget"
+              description="Build fully white-label support forms with a drag-and-drop builder — text, dropdowns, radio, checkboxes, help text, required fields. Share a link, drop in an inline embed, or add a floating chat-style widget to any website. Submissions become tickets and create the contact automatically — no customer login."
+              badge="⭐ NEW"
+              badgeColor="#FFE711"
               iconBgColor="#F4D9A8"
               accentColor="#B97E2C"
             />
@@ -516,7 +525,7 @@ export default function Home() {
               </div>
               <h3 className="font-bold text-xl mb-2">Agencies</h3>
               <p className="text-gray-600">
-                Resell white-label support to your clients. Brand the app and portal as your own and keep all the revenue.
+                Resell white-label support to your clients. Brand the app, forms, and widget as your own and keep all the revenue.
               </p>
             </Card>
             <Card>
@@ -608,7 +617,7 @@ export default function Home() {
               <ul className="space-y-3 text-sm mb-6">
                 <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Everything in Team</li>
                 <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Full white-label branding</li>
-                <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Branded client portal</li>
+                <li className="flex items-start gap-2"><span className="text-green-500">✓</span> Branded forms & chat widget</li>
               </ul>
               <InstallButton variant="outline" className="w-full">
                 Get Started
@@ -635,7 +644,7 @@ export default function Home() {
               <div className="text-4xl mb-4">🎨</div>
               <h3 className="font-bold text-xl mb-2">True White-Label</h3>
               <p className="text-gray-600">
-                Your brand everywhere — app and client portal. Resell it as your own on the Agency plan and keep the revenue.
+                Your brand everywhere — app, forms, and widget. Resell it as your own on the Agency plan and keep the revenue.
               </p>
             </Card>
             <Card hover={false} className="shadow-[6px_6px_0_0_#000]">
